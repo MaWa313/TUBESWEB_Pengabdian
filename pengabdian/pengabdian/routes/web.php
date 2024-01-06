@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PublikasiController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\DaftarJurnalController;
+use App\Http\Controllers\PelatihanController;
+use App\Http\Controllers\PelatihanViewsController;
+use App\Http\Controllers\PelayananController;
+use App\Http\Controllers\PelayananViewsController;
+use App\Http\Controllers\SKController;
+use App\Http\Controllers\ViewsJurnalController;
+use App\Models\Pelayanan;
+
+Route::get('/main', [MainController::class, 'index'])->name('main');
+Route::get('/viewsjurnal', [ViewsJurnalController::class, 'index'])->name('viewsjurnal');
+Route::delete('/jurnal/{id}', [JurnalController::class, 'destroy'])->name('jurnal.destroy');
+Route::get('/pelayanan', [PelayananViewsController::class, 'index'])->name('pelayanan');
+Route::get('/pelatihan', [PelatihanViewsController::class, 'index'])->name('pelatihan');
+Route::get('/program', [ProgramController::class, 'index'])->name('program');
+Route::get('/sk', [SKController::class, 'index'])->name('sk');
+Route::get('/publikasi', [PublikasiController::class, 'index'])->name('publikasi');
+Route::get('/daftarjurnal', [DaftarJurnalController::class, 'index'])->name('daftarjurnal');
+Route::View('admin', 'Admin');
+Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create');
+Route::post('/berita/store', [BeritaController::class, 'store'])->name('berita.store');
+Route::get('/jurnal/create', [JurnalController::class, 'create'])->name('jurnal.create');
+Route::post('/jurnal/store', [JurnalController::class, 'store'])->name('jurnal.store');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+Route::get('/jurnal/download/{id}', 'App\Http\Controllers\JurnalController@download')->name('jurnal.download');
+Route::get('/pelatihan/create', [PelatihanController::class, 'create'])->name('pelatihan.create');
+Route::post('/pelatihan/store', [PelatihanController::class, 'store'])->name('pelatihan.store');
+Route::get('/pelayanan/create', [PelayananController::class, 'create'])->name('pelayanan.create');
+Route::post('/pelayanan/store', [PelayananController::class, 'store'])->name('pelayanan.store');
